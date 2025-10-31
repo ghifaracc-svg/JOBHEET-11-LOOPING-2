@@ -1,4 +1,4 @@
-// Step 4: Import Scanner class
+    // Step 4: Import Scanner class
 import java.util.Scanner;
 
 // Step 2: Create a class named Star
