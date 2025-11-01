@@ -1,37 +1,43 @@
-// Step 2: Import Scanner and Random libraries
 import java.util.Random;
 import java.util.Scanner;
 
-// Step 1: Create a new class named Quiz
 public class Quiz {
-    // Step 3: Create the main() function
     public static void main(String[] args) {
-        // Step 4: Declare Scanner and Random objects
         Scanner input = new Scanner(System.in);
         Random rand = new Random();
 
-        // Step 5: Add sample syntax using Scanner and Random
-        // Randomize two numbers between 1 and 10
-        int num1 = rand.nextInt(10) + 1;
-        int num2 = rand.nextInt(10) + 1;
+        String continueGame;
 
-        System.out.println("Welcome to the Quiz!");
-        System.out.println("What is the result of: " + num1 + " + " + num2 + " ?");
+        do {
+            // Computer randomly chooses a number between 1 and 100
+            int answer = rand.nextInt(100) + 1;
+            int guess;
 
-        // Get user answer
-        System.out.print("Your answer: ");
-        int answer = input.nextInt();
+            System.out.println("=== Number Guessing Game ===");
+            System.out.println("I'm thinking of a number between 1 and 100.");
+            
+            // Loop until the user guesses correctly
+            do {
+                System.out.print("Enter your guess: ");
+                guess = input.nextInt();
+                input.nextLine(); // ignore newline
 
-        // Ignore the newline character
-        input.nextLine();
+                // Compare the guess with the answer
+                if (guess > answer) {
+                    System.out.println("Too high! Try again.");
+                } else if (guess < answer) {
+                    System.out.println("Too low! Try again.");
+                } else {
+                    System.out.println("🎉 Correct! The number was " + answer + "!");
+                }
+            } while (guess != answer);
 
-        // Check the answer
-        if (answer == (num1 + num2)) {
-            System.out.println("Correct! Great job!");
-        } else {
-            System.out.println("Incorrect. The correct answer is " + (num1 + num2));
-        }
+            // Ask if user wants to play again
+            System.out.print("Do you want to play again? (yes/no): ");
+            continueGame = input.nextLine();
 
-        System.out.println("Thanks for playing!");
+        } while (continueGame.equalsIgnoreCase("yes"));
+
+        System.out.println("Game ended. Thanks for playing!");
     }
 }
