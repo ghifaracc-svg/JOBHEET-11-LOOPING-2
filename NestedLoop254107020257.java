@@ -3,40 +3,44 @@ import java.util.Scanner;
 public class NestedLoop254107020257 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        scanner.useLocale(new java.util.Locale("id", "ID"));
 
-        // 2D array for storing temperature data
-        double[][] temps = new double[5][7]; // 5 rows (weeks), 7 columns (days)
 
-        // Input temperature data
-        System.out.println("Enter temperature data for 5 weeks (7 days each):");
-        for (int week = 0; week < 5; week++) {
-            System.out.println("Week " + (week + 1) + ":");
+
+        // === Step 1: Declare 2D array ===
+        // 5 cities, each with 7 days of temperature data
+        double[][] temps = new double[5][7];
+
+        for (int city = 0; city < 5; city++) {
+            System.out.println("City " + (city + 1) + ":");
             for (int day = 0; day < 7; day++) {
                 System.out.print("  Day " + (day + 1) + " temperature: ");
-                temps[week][day] = scanner.nextDouble();
+                temps[city][day] = scanner.nextDouble();
             }
             System.out.println();
         }
 
-        // Display all temperature data
-        System.out.println("\nTemperature Data:");
-        for (int week = 0; week < 5; week++) {
-            System.out.print("Week " + (week + 1) + ": ");
-            for (int day = 0; day < 7; day++) {
-                System.out.print(temps[week][day] + " ");
+        // === Step 3: Display all temperature data (using for-each) ===
+        System.out.println("\nTemperature Data for Each City:");
+        int cityNumber = 1;
+        for (double[] cityTemps : temps) {
+            System.out.print("City " + cityNumber + ": ");
+            for (double temp : cityTemps) {
+                System.out.print(temp + " ");
             }
             System.out.println();
+            cityNumber++;
         }
 
-        // Calculate average temperature for each week
-        System.out.println("\nAverage Temperature per Week:");
-        for (int week = 0; week < 5; week++) {
+        // === Step 4: Calculate and display average temperature per city ===
+        System.out.println("\nAverage Temperature per City:");
+        for (int city = 0; city < temps.length; city++) {
             double total = 0;
-            for (int day = 0; day < 7; day++) {
-                total += temps[week][day];
+            for (double temp : temps[city]) {
+                total += temp;
             }
-            double average = total / 7;
-            System.out.println("Week " + (week + 1) + ": " + average);
+            double average = total / temps[city].length;
+            System.out.println("City " + (city + 1) + ": " + average);
         }
 
         scanner.close();
